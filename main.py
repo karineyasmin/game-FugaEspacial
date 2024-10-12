@@ -13,13 +13,26 @@ class Background:
     """
 
     image = None
+    margin_left = None
+    margin_right = None
 
     def __init__(self):
 
         # Atribui imagem pára o background
         background_fig = pygame.image.load("Images/background.png")
         background_fig.convert()
+        background_fig = pygame.transform.scale(background_fig, (800, 602))
         self.image = background_fig
+
+        margin_left_fig = pygame.image.load("Images/margin_1.png")
+        margin_left_fig.convert()
+        margin_left_fig = pygame.transform.scale(margin_left_fig, (60, 602))
+        self.margin_left = margin_left_fig
+
+        margin_right_fig = pygame.image.load("Images/margin_2.png")
+        margin_right_fig.convert()
+        margin_right_fig = pygame.transform.scale(margin_right_fig, (60, 602))
+        self.margin_right = margin_right_fig
 
     def update(self, dt):
         pass
@@ -27,6 +40,19 @@ class Background:
     # Imagem do backeground na tela
     def draw(self, screen):
         screen.blit(self.image, (0, 0))
+
+        # 60 depois da primeira margem
+        screen.blit(self.margin_left, (0, 0))
+
+        # 60 antes da segunda margem
+        screen.blit(self.margin_right, (740, 0))
+
+    # Define posições do plano de fundo para criar o movimento
+    def move(self, screen, scr_height, movL_x, movL_y, movR_x, movR_y):
+        for i in range(0, 2):
+            screen.blit(self.image, (movL_x, movL_y - i * scr_height))
+            screen.blit(self.margin_left, (movL_x, movR_y - i * scr_height))
+            screen.blit(self.margin_right, (movR_x, movR_y - i * scr_height))
 
 
 class Game:
@@ -73,7 +99,6 @@ class Game:
         self.background.update(dt)
 
     def elements_draw(self):
-
         # Desenhar elementos
         self.background.draw(self.screen)
 
@@ -81,6 +106,17 @@ class Game:
         """
         Laço principal
         """
+
+        # variaáveis para moviemnto de Plano de Fundo/Background
+        velocidade_background = 10
+
+        # movimento da margem esquerda
+        movL_x = 0
+        movL_y = 0
+
+        # movimento da margem direita
+        movR_x = 740
+        movR_y = 0
 
         # Criar o plano de fundo
         self.background = Background()
@@ -102,6 +138,18 @@ class Game:
             # Atualiza a tela
             pygame.display.update()
             clock.tick(2000)
+
+            # adiciona movimento ao background
+            self.background.move(
+                self.screen, self.height, movL_x, movL_y, movR_x, movR_y
+            )
+            movL_y = movL_y + velocidade_background
+            movR_y = movR_y + velocidade_background
+
+            # se a imagem ultrapassar a extremidade da tela, move de volta
+            if movL_y > 600 and movR_y > 600:
+                movL_y -= 600
+                movR_y -= 600
 
         # while self.run
 
