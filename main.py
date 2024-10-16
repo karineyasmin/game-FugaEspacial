@@ -129,8 +129,6 @@ class Game:
                     if event.key == self.ESQUERDA or event.key == self.DIREITA:
                         self.mudar_x = 0
 
-    # handle_events()
-
     def elements_update(self, dt):
         # Atualiza elementos
         self.background.update(dt)
@@ -143,6 +141,9 @@ class Game:
         """
         Laço principal
         """
+
+        score = 0
+        h_passou = 0
 
         # variáveis para moviemnto de Plano de Fundo/Background
         velocidade_background = 10
@@ -208,8 +209,11 @@ class Game:
             # Altera a coordenada x da nave de acordo com as mudanças no event_handle() apra ele se mover
             x = x + self.mudar_x
 
-            # Desenhar Player
+            # Desenha o Player
             self.player.draw(self.screen, x, y)
+
+            # Exibe o Score
+            self.score_card(self.screen, h_passou, score)
 
             # Restrições do movimento do Player
             # Se o Player bate na lateral não é Game Over
@@ -242,12 +246,23 @@ class Game:
                 h_y = 0 - h_height
                 h_x = random.randrange(125, 650 - h_height)
                 hzrd = random.randint(0, 4)
+
+                # Determinando quantos hazard passaram e a pontuação
+                h_passou = h_passou + 1
+                score = h_passou * 10
+
             # Atualiza a tela
             pygame.display.update()
 
         # while self.run
 
-    # loop()
+    # Informe a quantidade de hazard que passaram e a Pontuação
+    def score_card(self, screen, h_passou, score):
+        font = pygame.font.SysFont(None, 35)
+        passou = font.render("Passou: " + str(h_passou), True, (255, 255, 128))
+        score = font.render("Score: " + str(score), True, (253, 231, 32))
+        screen.blit(passou, (0, 50))
+        screen.blit(score, (0, 100))
 
 
 class Player:
