@@ -68,12 +68,10 @@ class Game:
     background = None
     player = None
     hazard = []
+    soundtrack = None
     render_text_bateulateral = None
     render_text_perdeu = None
 
-    # movimento do Player
-    DIREITA = pygame.K_RIGHT
-    ESQUERDA = pygame.K_LEFT
     mudar_x = 0.0
 
     def __init__(self, size, fullscreen):
@@ -119,11 +117,11 @@ class Game:
             if event.type == pygame.KEYDOWN:
 
                 # Se clicar na seta esquerda, anda 3 para a esquerda no eixo x
-                if event.key == self.ESQUERDA:
+                if event.key == self.K_LEFT:
                     self.mudar_x = -3
 
                 # Se clicar na seta da direita, anda 3 para a direita no eixo x
-                if event.key == self.DIREITA:
+                if event.key == self.K_RIGHT:
                     self.mudar_x = 3
 
                 # Se soltar qualquer tecla, não faz nada
@@ -250,7 +248,7 @@ class Game:
             if x > 760 - 92 or x < 40 + 5:
 
                 # Som da colisão nas margens
-                self.play_sound("Sound/jump2.wav")
+                self.play_sound("Sounds/jump2.wav")
 
                 self.screen.blit(self.render_text_bateulateral, (80, 200))
 
@@ -269,6 +267,10 @@ class Game:
             self.hazard.append(Hazard("Images/cometaVermelho.png", h_x, h_y))
             self.hazard.append(Hazard("Images/meteoros.png", h_x, h_y))
             self.hazard.append(Hazard("Images/buracoNegro.png", h_x, h_y))
+
+            # Criar trilha sonora
+            self.play_soundtrack = SoundTrack("Sounds/song.wav")
+            self.soundtrack.play()
 
             # Adicionando movimento ao hazard
             h_y = h_y + velocidade_hazard / 4
@@ -331,6 +333,37 @@ class Hazard:
 
     def draw(self, screen, x, y):
         screen.blit(self.image, (x, y))
+
+
+class SoundTrack:
+    soundtrack = None
+    sound = None
+
+    def __init__(self, soundtrack):
+        if os.path.isfile(soundtrack):
+            self.soundtrack = soundtrack
+        else:
+            print(soundtrack + "not found... ignoring", file=sys.stderr)
+
+    def play(self):
+        pygame.mixer.music.load(self.soundtrack)
+        pygame.mixer.music.set_volume(0.5)
+        pygame.mixer.music.play(loops=-1)
+
+    def set(self, soundtrack):
+        if os.path.isfile(soundtrack):
+            self.soundtrack = soundtrack
+        else:
+            print(soundtrack + "not found... ignoring", file=sys.stderr)
+
+    def play_sound(self, sound):
+        if os.path.isfile(sound):
+            self.sound = sound
+            pygame.mixer.music.load(self.sound)
+            pygame.mixer.music.set_volume(0.5)
+            pygame.mixer.music.play()
+        else:
+            print(sound + "not found... ignoring", file=sys.stderr)
 
 
 # Inicia o jogo: Cria o objeto game e chama o loop básico
