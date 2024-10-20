@@ -40,7 +40,9 @@ Você pode instalar o Pygame usando o pip:
 ```bash
 pip install pygame
 ```
-
+## Imagens do jogo:
+[!][Print 1]([printscreen/Captura de tela de 2024-10-20 17-35-05.png](https://github.com/karineyasmin/game-FugaEspacial/blob/main/printscreen/Captura%20de%20tela%20de%202024-10-20%2017-35-05.png))
+[!][Print 2](https://github.com/karineyasmin/game-FugaEspacial/blob/main/printscreen/Captura%20de%20tela%20de%202024-10-20%2017-35-09.png)
 ## Estrutura do Projeto
 ```
 /fuga_espacial
