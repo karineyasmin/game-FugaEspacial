@@ -2,7 +2,7 @@
 
 🌕 Jogo com temática espacial, desenvolvido durante o curso **Programação de Jogos em Python** da AEB Escola (Agência Espacial Brasileira).
 
-🛸 O jogo é desenvolvido utilizando as tecnologias Python e Pygame.
+🛸 O jogo é desenvolvido utilizando as  **Python** e **Pygame.**
 
 ## Descrição
 
@@ -19,7 +19,8 @@ Um grupo de diplomatas escapa de uma fortaleza estelar a bordo de uma nave danif
 
 ## Pré-requisitos
 
-Certifique-se de ter o Python 3.x e o Pygame instalados. Você pode instalar o Pygame usando o pip:
+Certifique-se de ter o Python 3.x e o Pygame instalados. <br>
+Você pode instalar o Pygame usando o pip:
 
 ```bash
 pip install pygame
@@ -54,8 +55,8 @@ pip install pygame
 
 ## Como Jogar
 
-Clone este repositório ou baixe o código-fonte.
-Navegue até o diretório do projeto.
+Clone este repositório ou baixe o código-fonte.<br>
+Navegue até o diretório do projeto.<br>
 Execute o arquivo main.py:
 
 ```bash
