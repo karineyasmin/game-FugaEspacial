@@ -16,6 +16,21 @@ Um grupo de diplomatas escapa de uma fortaleza estelar a bordo de uma nave danif
 - Sistema de pontuação baseado em obstáculos evitados
 - Mensagens de Game Over e Vitória
 - Gráficos animados com fundo em movimento
+  
+## Como Jogar
+
+### 🕹️ [Clique aqui para jogar](https://karineyasmin.github.io/FugaEspacialWeb/)
+
+Ou
+
+
+Clone este repositório ou baixe o código-fonte.<br>
+Navegue até o diretório do projeto.<br>
+Execute o arquivo main.py:
+
+```bash
+python main.py
+```
 
 ## Pré-requisitos
 
@@ -53,15 +68,7 @@ pip install pygame
 └── README.md        # Documentação do projeto
 ```
 
-## Como Jogar
 
-Clone este repositório ou baixe o código-fonte.<br>
-Navegue até o diretório do projeto.<br>
-Execute o arquivo main.py:
-
-```bash
-python main.py
-```
 ## Contribuindo
 Se você deseja contribuir, sinta-se à vontade para fazer um fork do repositório, realizar alterações e enviar um pull request.
 
