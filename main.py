@@ -4,9 +4,11 @@ Descrição: Um grupo de diplomatas escapam de uma fortaleza estelar a bordo de 
 A nave precisa se desviar das ameaças e sobreviver até atingir a zona de segurança diplomática.
 """
 
+import sys
 import pygame
 import time
 import random
+import os
 
 
 class Background:
@@ -137,6 +139,23 @@ class Game:
         # Desenhar elementos
         self.background.draw(self.screen)
 
+    # Informe a quantidade de hazard que passaram e a Pontuação
+    def score_card(self, screen, h_passou, score):
+        font = pygame.font.SysFont(None, 35)
+        passou = font.render("Passou: " + str(h_passou), True, (255, 255, 128))
+        score = font.render("Score: " + str(score), True, (253, 231, 32))
+        screen.blit(passou, (0, 50))
+        screen.blit(score, (0, 100))
+
+    def play_soundtrack(self):
+        # Inclui a trilha sonora
+        if os.path.isfile("Sounds/song.wav"):
+            pygame.mixer.music.load("Sounds/song.wav")
+            pygame.mixer.music.set_volume(0.5)
+            pygame.mixer.music.play(loops=-1)  # Toca a música infinitamente
+        else:
+            print("Sounds/song.wav not fond... ignoring", file=sys.stderr)
+
     def loop(self):
         """
         Laço principal
@@ -167,6 +186,9 @@ class Game:
 
         # Criar o plano de fundo
         self.background = Background()
+
+        # Inclui a trilha sonora
+        self.play_soundtrack()
 
         # Posição do player
         x = (self.width - 56) / 2
@@ -255,14 +277,6 @@ class Game:
             pygame.display.update()
 
         # while self.run
-
-    # Informe a quantidade de hazard que passaram e a Pontuação
-    def score_card(self, screen, h_passou, score):
-        font = pygame.font.SysFont(None, 35)
-        passou = font.render("Passou: " + str(h_passou), True, (255, 255, 128))
-        score = font.render("Score: " + str(score), True, (253, 231, 32))
-        screen.blit(passou, (0, 50))
-        screen.blit(score, (0, 100))
 
 
 class Player:
