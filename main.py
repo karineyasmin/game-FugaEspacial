@@ -156,6 +156,14 @@ class Game:
         else:
             print("Sounds/song.wav not fond... ignoring", file=sys.stderr)
 
+    def play_sound(self, sound):
+        if os.path.isfile(sound):
+            pygame.mixer.music.load(sound)
+            pygame.mixer.music.set_volume(0.5)
+            pygame.mixer.music.play()
+        else:
+            print("Sound file not found... ignoring", file=sys.stderr)
+
     def loop(self):
         """
         Laço principal
@@ -240,6 +248,10 @@ class Game:
             # Restrições do movimento do Player
             # Se o Player bate na lateral não é Game Over
             if x > 760 - 92 or x < 40 + 5:
+
+                # Som da colisão nas margens
+                self.play_sound("Sound/jump2.wav")
+
                 self.screen.blit(self.render_text_bateulateral, (80, 200))
 
                 # Atualizar a tela
