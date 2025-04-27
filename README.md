@@ -40,11 +40,6 @@ Você pode instalar o Pygame usando o pip:
 ```bash
 pip install pygame
 ```
-## Imagens do jogo:
-
-<img src="https://i.ibb.co/9HrwKzQ/Captura-de-tela-de-2024-10-20-17-35-05.png" alt="Captura-de-tela-de-2024-10-20-17-35-05" border="0">
-
-<img src="https://i.ibb.co/KFXJ6Pb/Captura-de-tela-de-2024-10-20-17-35-09.png" alt="Captura-de-tela-de-2024-10-20-17-35-09" border="0">
 
 ## Estrutura do Projeto
 ```
